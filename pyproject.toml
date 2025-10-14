@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "job-scraper"
+version = "0.1.0"
+description = "A Python scraper for job listings from Indeed with SQLite storage."
+authors = [{ name = "Sohila Khaled Abbas" }]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+"beautifulsoup4",
+"requests",
+"pandas",
+"pytest"
+]
