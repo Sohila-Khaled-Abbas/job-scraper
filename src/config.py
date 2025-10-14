@@ -14,10 +14,11 @@ DEFAULTS = {
 
 
 def load_config(path: str | Path = None):
-if path is None:
-return DEFAULTS
-p = Path(path)
-if not p.exists():
-return DEFAULTS
-with open(p, "r", encoding="utf8") as f:
-return {**DEFAULTS, **yaml.safe_load(f)}
+    if path is None:
+        return DEFAULTS
+    p = Path(path)
+    if not p.exists():
+        return DEFAULTS
+    with open(p, "r", encoding="utf8") as f:
+        data = yaml.safe_load(f) or {}
+    return {**DEFAULTS, **data}
