@@ -1,19 +1,14 @@
-import pytest
+from pathlib import Path
+
 from src.parser import parse_job_card
 
 
-@pytest.fixture
-def sample_html():
-with open('tests/fixtures/indeed_card.html', encoding='utf-8') as f:
-return f.read()
-
-
-def test_parse_job_card(sample_html):
-job = parse_job_card(sample_html)
-assert isinstance(job, dict)
-assert 'title' in job
-assert 'company' in job
-assert 'location' in job
-assert 'summary' in job
-assert job['title'] == 'Data Analyst'
-assert job['company'] == 'TechCorp'
+def test_parse_job_card():
+    path = Path(__file__).parent / "fixtures" / "indeed_card.html"
+    html = path.read_text(encoding="utf-8")
+    job = parse_job_card(html)
+    assert isinstance(job, dict)
+    assert job["title"] == "Data Analyst"
+    assert job["company"] == "TechCorp"
+    assert job["location"] == "Cairo, Egypt"
+    assert "Analyze data trends" in job["summary"]
